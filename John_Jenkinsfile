@@ -1,11 +1,4 @@
-version: "3.3"
-
-# every single service is a container(Look at it like USA with multiple states)
-services:
- #############################################################################################
-
-
- pipeline {
+pipeline {
     agent any
 
     stages {
@@ -109,3 +102,8 @@ stage('build ') {
                '''
             }
         }
+       
+
+
+    }
+}

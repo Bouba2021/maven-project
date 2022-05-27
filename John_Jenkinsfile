@@ -5,6 +5,24 @@ pipeline {
 
     stages {
 
+        stage('Setup parameters') {
+            steps {
+                script { 
+                    properties([
+                        parameters([
+                          
+
+                            string(
+                                defaultValue: '001', 
+                                name: 'ImageTAG', 
+                                trim: true
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+
         stage('clean') {
             agent {
                  docker { image 'maven:3.8.5-openjdk-8-slim' }
@@ -100,7 +118,7 @@ stage('build ') {
 
             steps {
                sh '''
-           docker build -t devopseasylearning2021:001 .
+           docker build -t devopseasylearning2021:$ImageTAG .
                '''
             }
         }

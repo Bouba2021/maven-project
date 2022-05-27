@@ -81,7 +81,7 @@ stage('verify') {
         }
 
 
-stage('install') {
+    stage('install') {
     agent {
                  docker { image 'maven:3.8.5-openjdk-8-slim' }
              }
@@ -92,19 +92,26 @@ stage('install') {
                '''
             }
         }
-       
+    }  
 
 
-    }
 
+stage('build ') {
 
-stage('build') {
-    steps {
-        sh '''
-        docker build -t devopseasylearning2021:001 .
-        '''
-    }
+            steps {
+               sh '''
+           docker build -t devopseasylearning2021:001 .
+               '''
+            }
+        }    
+    
+
+    
 }
 
 
-}
+
+
+
+
+    

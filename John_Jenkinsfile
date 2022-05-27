@@ -1,4 +1,11 @@
-pipeline {
+version: "3.3"
+
+# every single service is a container(Look at it like USA with multiple states)
+services:
+ #############################################################################################
+
+
+ pipeline {
     agent any
 
     stages {
@@ -10,7 +17,7 @@ pipeline {
 
             steps {
                sh '''
-              rm -rf webapp/target/webapp.war || true
+               rm -rf webapp/target/webapp.war || true
               mvn clean
                '''
             }
@@ -61,6 +68,7 @@ stage('package') {
 
             steps {
                sh '''
+            
               mvn package
               ls -l webapp/target
               pwd
@@ -81,7 +89,7 @@ stage('verify') {
         }
 
 
-    stage('install') {
+stage('install') {
     agent {
                  docker { image 'maven:3.8.5-openjdk-8-slim' }
              }
@@ -92,10 +100,7 @@ stage('verify') {
                '''
             }
         }
-    }  
-
-
-
+       
 stage('build ') {
 
             steps {
@@ -103,15 +108,4 @@ stage('build ') {
            docker build -t devopseasylearning2021:001 .
                '''
             }
-        }    
-    
-
-    
-}
-
-
-
-
-
-
-    
+        }

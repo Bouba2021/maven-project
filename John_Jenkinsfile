@@ -192,7 +192,7 @@ stage('Docker push') {
 stage('Deploy with docker ') {
             steps {
                sh '''
-              docker run -i devopseasylearning2021/cedric_0314:$ImageTAG 
+              docker run -i devopseasylearning2021/ducobu:$ImageTAG 
                 '''
             }
         }

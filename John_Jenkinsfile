@@ -3,6 +3,8 @@ pipeline {
         label 'main'
     }
 
+
+    /// Creating environment variables for dockerhub login
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerhub')
         
@@ -11,6 +13,8 @@ pipeline {
     artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '5'))
     disableConcurrentBuilds() }
 
+
+    /// Setting up paramenters for our image tag
     stages {
 
         stage('Setup parameters') {
@@ -31,6 +35,8 @@ pipeline {
             }
         }
 
+       
+        /// Starting with maven Build steps (clean, compile, validate, test, package, verify & install)
         stage('clean') {
             agent {
                  docker { image 'maven:3.8.5-openjdk-8-slim' }
@@ -122,7 +128,7 @@ stage('install') {
             }
         }
 
-///// Passing SonarQube analysis - Make sure to Update the SonarQube Properties with the your company SQ URL and also add your project name.
+///// Passing SonarQube analysis - Make sure to Update the SonarQube Properties with the your company SQ URL and also add your project name & project key.
 stage('SonarQube analysis') {
             agent {
                 docker {
@@ -151,7 +157,7 @@ stage('build ') {
             }
         }
 
-
+/// Passing the variables created above for dockerhub login
 stage('Docker login'){
             steps {
 
@@ -168,6 +174,8 @@ stage('Docker login'){
         }
 
 
+
+/// Passing image tag variable created above
 stage('Docker push') {
             steps {
                 sh '''

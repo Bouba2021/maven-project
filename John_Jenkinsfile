@@ -152,7 +152,7 @@ stage('build ') {
 
             steps {
                sh '''
-           docker build --tag devopseasylearning2021/ducobu:$ImageTAG .
+           docker build -t devopseasylearning2021/ducobu:$ImageTAG .
                '''
             }
         }

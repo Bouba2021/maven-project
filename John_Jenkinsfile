@@ -4,7 +4,7 @@ pipeline {
     }
 
 
-    /// Creating environment variables for dockerhub login
+    /// Creating environment variables for dockerhub login - Create your creds In Jenkins, import then here then pass them while login to Hub(push Image)
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerhub')
         
@@ -185,6 +185,7 @@ stage('Docker push') {
         }
 
     }
+
 
 
 }
